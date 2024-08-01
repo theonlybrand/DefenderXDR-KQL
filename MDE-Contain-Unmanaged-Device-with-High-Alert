@@ -3,7 +3,7 @@
 DeviceInfo
 | where OnboardingStatus !has "Onboarded"
 | summarize DeviceID = arg_max(DeviceId, *) by DeviceId
-| project DeviceId, DeviceName, DeviceCategory, DeviceSubtype
+| project DeviceId, DeviceName, DeviceCategory, DeviceSubtype, ReportId
 | join AlertEvidence on DeviceId
 | where Timestamp > ago(1h)
-| project DeviceId, Timestamp, DeviceName, DeviceCategory, DeviceSubtype, Title, Severity
+| project DeviceId, Timestamp, DeviceName, DeviceCategory, DeviceSubtype, Title, Severity, ReportId
