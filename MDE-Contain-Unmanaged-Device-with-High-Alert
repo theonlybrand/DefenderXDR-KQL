@@ -1,0 +1,9 @@
+# Detect unmanaged devices with "High" severity alerts from the last hour in Defender XDR
+
+DeviceInfo
+| where OnboardingStatus !has "Onboarded"
+| summarize DeviceID = arg_max(DeviceId, *) by DeviceId
+| project DeviceId, DeviceName, DeviceCategory, DeviceSubtype
+| join AlertEvidence on DeviceId
+| where Timestamp > ago(1h)
+| project DeviceId, Timestamp, DeviceName, DeviceCategory, DeviceSubtype, Title, Severity
