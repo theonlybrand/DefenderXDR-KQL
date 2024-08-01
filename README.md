@@ -1,2 +1,2 @@
-# M365Defender-KQL
-KQL Queries for Microsoft 365 Defender
+# DefenderXDR-KQL
+KQL Queries for Microsoft Defender XDR
